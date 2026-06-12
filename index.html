@@ -1,207 +1,911 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Valerie Boutique - Pijamas y comodidad para tus mejores momentos">
-    <title>Valerie Boutique - Pijamas & Comodidad</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Valerie Boutique – Pijamas femeninas, conjuntos y camisetas. Comodidad y estilo para tus mejores momentos. Medellín, Colombia.">
+  <title>Valerie Boutique – Pijamas & Comodidad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:     #C9647A;
+      --rose-lt:  #F7EEF1;
+      --rose-dk:  #8A3F52;
+      --gold:     #C4974A;
+      --gold-lt:  #FBF5EC;
+      --cream:    #FAF7F4;
+      --ink:      #1E1A1C;
+      --muted:    #7A6D72;
+      --border:   rgba(201,100,122,0.18);
+      --white:    #ffffff;
+      --radius:   14px;
+      --radiuslg: 22px;
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-sans);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ─────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,247,244,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 28px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 22px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--rose-dk); text-decoration: none;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .nav-logo span.monogram {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--rose); color: var(--white);
+      font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--muted); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: var(--white);
+      padding: 9px 20px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.03em; transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--rose-dk); transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--ink);
+      transition: transform .3s, opacity .3s;
+    }
+    .mobile-nav {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--cream); border-bottom: 1px solid var(--border);
+      padding: 24px 28px; z-index: 99; flex-direction: column; gap: 20px;
+    }
+    .mobile-nav a {
+      font-size: 15px; color: var(--ink); text-decoration: none; font-weight: 400;
+    }
+    .mobile-nav.open { display: flex; }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 100px 28px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--rose) 0px, var(--rose) 1px,
+        transparent 1px, transparent 30px
+      );
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rose); font-weight: 500;
+      border: 1px solid rgba(201,100,122,0.35);
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: clamp(52px, 9vw, 88px);
+      font-weight: 300; line-height: 1.0;
+      color: var(--ink); letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--rose);
+    }
+    .hero-sub {
+      font-size: 17px; color: var(--muted);
+      font-weight: 300; margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--rose); color: var(--white);
+      padding: 13px 32px; border-radius: 100px;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.03em; transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--rose);
+      border: 1.5px solid var(--rose);
+      padding: 12px 28px; border-radius: 100px;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.03em; transition: all .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--rose); color: var(--white); }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0.4; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .scroll-hint-line {
+      width: 1px; height: 38px; background: var(--muted);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.2; transform: scaleY(0.4); transform-origin: top; }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ── TRUST STRIP ────────────────────────── */
+    .trust {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 18px 28px;
+      display: flex; justify-content: center; align-items: center;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--muted); white-space: nowrap;
+    }
+    .trust-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--rose); flex-shrink: 0;
+    }
+
+    /* ── SECTION COMMON ─────────────────────── */
+    .section { padding: 90px 28px; }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--rose); font-weight: 500; display: block; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 300; line-height: 1.1;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-desc {
+      font-size: 15px; color: var(--muted);
+      max-width: 480px; margin-bottom: 52px; font-weight: 300;
+    }
+    .centered { text-align: center; }
+    .centered .section-desc { margin-left: auto; margin-right: auto; }
+
+    /* ── PRODUCTS ───────────────────────────── */
+    .products { background: var(--white); }
+    .products-wrap { max-width: 1100px; margin: 0 auto; }
+
+    /* filter tabs */
+    .filter-tabs {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 44px; justify-content: center;
+    }
+    .filter-tab {
+      padding: 8px 20px; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent; color: var(--muted);
+      font-size: 13px; font-family: var(--ff-sans);
+      cursor: pointer; transition: all .2s;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--rose); color: var(--white); border-color: var(--rose);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radiuslg);
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(201,100,122,0.12);
+    }
+    .product-img-wrap {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--rose-lt);
+    }
+    .product-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.04);
+    }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--white); color: var(--rose);
+      font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+      padding: 4px 12px; border-radius: 100px;
+      border: 1px solid rgba(201,100,122,0.25);
+    }
+    .product-body {
+      padding: 22px 22px 24px;
+      display: flex; flex-direction: column; flex: 1;
+    }
+    .product-category {
+      font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--rose); font-weight: 500; margin-bottom: 6px;
+    }
+    .product-name {
+      font-family: var(--ff-serif);
+      font-size: 21px; font-weight: 400; color: var(--ink);
+      margin-bottom: 6px; line-height: 1.2;
+    }
+    .product-desc {
+      font-size: 13px; color: var(--muted);
+      font-weight: 300; flex: 1; margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .product-btn {
+      flex: 1; text-align: center;
+      background: var(--rose); color: var(--white);
+      padding: 11px 18px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.04em; transition: background .2s;
+      white-space: nowrap;
+    }
+    .product-btn:hover { background: var(--rose-dk); }
+    .product-wa {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #25D366; color: white;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; flex-shrink: 0;
+      transition: transform .2s;
+      font-size: 18px;
+    }
+    .product-wa:hover { transform: scale(1.1); }
+
+    /* ── ABOUT ──────────────────────────────── */
+    .about { background: var(--cream); }
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-features { display: flex; flex-direction: column; gap: 28px; }
+    .feature-row {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .feature-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--rose-lt); color: var(--rose);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 18px;
+    }
+    .feature-text h4 {
+      font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 3px;
+    }
+    .feature-text p {
+      font-size: 13px; color: var(--muted); font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ───────────────────────── */
+    .testimonials { background: var(--rose-lt); }
+    .testimonials-wrap { max-width: 1100px; margin: 0 auto; }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px; border: 1px solid var(--border);
+    }
+    .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+    .testi-text {
+      font-size: 14px; color: var(--ink); line-height: 1.7;
+      font-family: var(--ff-serif); font-style: italic;
+      font-size: 17px; font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .testi-author {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    /* ── CONTACT ────────────────────────────── */
+    .contact { background: var(--white); }
+    .contact-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .contact-channels { display: flex; flex-direction: column; gap: 16px; }
+    .contact-channel {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 22px; border-radius: var(--radius);
+      border: 1px solid var(--border); text-decoration: none;
+      background: var(--cream); transition: border-color .2s, transform .2s;
+    }
+    .contact-channel:hover {
+      border-color: var(--rose); transform: translateX(4px);
+    }
+    .channel-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .channel-icon.green { background: #e6f9ed; }
+    .channel-icon.blue  { background: #e6eefb; }
+    .channel-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .channel-value { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .contact-form label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%; padding: 13px 16px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--cream); font-family: var(--ff-sans);
+      font-size: 14px; color: var(--ink);
+      outline: none; transition: border-color .2s;
+      resize: vertical;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--rose); }
+    .contact-form textarea { min-height: 120px; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    .footer {
+      background: var(--ink); color: rgba(255,255,255,0.6);
+      padding: 60px 28px 36px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: var(--ff-serif); font-size: 24px; font-weight: 300;
+      color: var(--white); margin-bottom: 12px; letter-spacing: 0.03em;
+    }
+    .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 280px; }
+    .footer-col h5 {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--white); font-weight: 500; margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a {
+      font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1100px; margin: 28px auto 0;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; flex-wrap: wrap; gap: 12px;
+    }
+
+    /* ── WA FLOAT ───────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.5);
+    }
+    .wa-float::before {
+      content: '';
+      position: absolute; inset: -4px; border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.4);
+      animation: waPing 2.5s infinite;
+    }
+    @keyframes waPing {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .about-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .hero h1 { font-size: 52px; }
+      .section { padding: 60px 20px; }
+      .trust-inner { gap: 20px; }
+    }
+
+    /* ── FADE IN ANIMATION ─────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-content">
-                <div class="logo">
-                    <span class="logo-text">VB VALERIE BOUTIQUE</span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                    <li><a href="#productos" class="nav-link">Productos</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-                <button class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#inicio" class="mobile-nav-link">Inicio</a>
-        <a href="#productos" class="mobile-nav-link">Productos</a>
-        <a href="#contacto" class="mobile-nav-link">Contacto</a>
+<!-- ── NAVBAR ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">
+      <span class="monogram">VB</span>
+      Valerie Boutique
+    </a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#coleccion">Colección</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/573011044050" target="_blank" class="nav-cta">Pedir por WhatsApp</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#inicio">Inicio</a>
+  <a href="#coleccion">Colección</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#contacto">Contacto</a>
+  <a href="https://wa.me/573011044050" target="_blank" style="color: var(--rose); font-weight:500;">📲 Pedir ahora</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="inicio" class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner fade-up">
+    <span class="hero-eyebrow">✦ Medellín, Colombia ✦</span>
+    <h1>Valerie<br><em>Boutique</em></h1>
+    <p class="hero-sub">Pijamas femeninas, conjuntos y camisetas diseñados para tu comodidad y estilo — cada prenda, un momento especial.</p>
+    <div class="hero-btns">
+      <a href="#coleccion" class="btn-primary">Ver colección</a>
+      <a href="https://wa.me/573011044050" target="_blank" class="btn-outline">Consultar por WhatsApp</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── TRUST STRIP ── -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-dot"></div> Envíos a toda Colombia</div>
+    <div class="trust-item"><div class="trust-dot"></div> Tallas S – XL disponibles</div>
+    <div class="trust-item"><div class="trust-dot"></div> Tejido suave premium</div>
+    <div class="trust-item"><div class="trust-dot"></div> Atención personalizada por WhatsApp</div>
+    <div class="trust-item"><div class="trust-dot"></div> Pagos seguros y fáciles</div>
+  </div>
+</div>
+
+<!-- ── PRODUCTS ── -->
+<section id="coleccion" class="section products">
+  <div class="products-wrap">
+    <div class="centered">
+      <span class="section-label">Nuestra colección</span>
+      <h2 class="section-title">Pijamas & <em>Conjuntos</em></h2>
+      <p class="section-desc">Cada pieza está seleccionada con amor — tejidos suaves, estampados únicos y cortes que abrazan cada cuerpo.</p>
     </div>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">VALERIE BOUTIQUE</h1>
-                    <p class="hero-subtitle">Pijamas & Comodidad para tus Mejores Momentos</p>
-                    <p class="hero-description">Descubre nuestra exclusiva colección de pijamas y conjuntos diseñados para tu confort y estilo</p>
-                    <div class="hero-buttons">
-                        <a href="#productos" class="btn btn-primary">Ver Colección</a>
-                        <a href="https://wa.me/573011044050" target="_blank" class="btn btn-secondary">Consultar por WhatsApp</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="portada.png.jpg" alt="Valerie Boutique Logo" class="hero-img">
-                </div>
-            </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todo</button>
+      <button class="filter-tab" data-filter="conjunto">Conjuntos</button>
+      <button class="filter-tab" data-filter="camisón">Pijamas Camisón</button>
+      <button class="filter-tab" data-filter="camiseta">Camisetas Colombia</button>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- 1 – Conjuntos de top + pantalón -->
+
+      <div class="product-card fade-up" data-cat="conjunto">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_21_PM__1_.jpeg" alt="Conjunto Rosa con Aguacates" loading="lazy">
+          <span class="product-badge">Nuevo</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <h2 class="section-title">Sobre Nosotros</h2>
-            <p class="about-text">En Valerie Boutique creemos que la comodidad y el estilo van de la mano. Cada prenda está cuidadosamente seleccionada para brindarte los mejores momentos con máxima comodidad.</p>
+        <div class="product-body">
+          <p class="product-category">Conjunto pijama</p>
+          <h3 class="product-name">Conjunto Rosa Aguacates</h3>
+          <p class="product-desc">Top fucsia de tiras con moño menta + pantalón negro estampado de aguacates kawaii con corazones. Tela suave tipo algodón licrado.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Rosa%20Aguacates%20🥑" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Products Section -->
-    <section id="productos" class="products">
-        <div class="container">
-            <h2 class="section-title">Nuestra Colección</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="producto1.jpg.jpeg" alt="Camisetas Deportivas" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3>Camisetas Deportivas</h3>
-                        <p class="product-description">Oficial Selección Colombia - Premium</p>
-                        <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20las%20Camisetas%20Deportivas" class="product-btn" target="_blank">Consultar</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="producto2.jpg.jpeg" alt="Conjunto Rosa & Amarillo" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3>Conjunto Rosa & Amarillo</h3>
-                        <p class="product-description">Top rosa con short de aguacates</p>
-                        <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Rosa%20y%20Amarillo" class="product-btn" target="_blank">Consultar</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="producto3.jpg.jpeg" alt="Conjunto Morado Bunny" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3>Conjunto Morado Bunny</h3>
-                        <p class="product-description">Top morado con short de conejitos</p>
-                        <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Morado%20Bunny" class="product-btn" target="_blank">Consultar</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="producto4.jpg.jpeg" alt="Conjunto Negro & Verde" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3>Conjunto Negro & Verde</h3>
-                        <p class="product-description">Top negro con short verde de leones</p>
-                        <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Negro%20y%20Verde" class="product-btn" target="_blank">Consultar</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="producto5.jpg.jpeg" alt="Pijama Morado Ovejas" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3>Pijama Completo Morado</h3>
-                        <p class="product-description">Completo morado con ovejas blancas</p>
-                        <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Pijama%20Morado%20Ovejas" class="product-btn" target="_blank">Consultar</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="producto6.jpg.jpeg" alt="Pijama Hello Kitty" loading="lazy">
-                    </div>
-                    <div class="product-info">
-                        <h3>Pijama Completo Hello Kitty</h3>
-                        <p class="product-description">Completo morado con Hello Kitty blanca</p>
-                        <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Pijama%20Hello%20Kitty" class="product-btn" target="_blank">Consultar</a>
-                    </div>
-                </div>
-            </div>
+      <div class="product-card fade-up" data-cat="conjunto">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_21_PM.jpeg" alt="Conjunto Morado Bunny" loading="lazy">
+          <span class="product-badge">Nuevo</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <h2 class="section-title">Contacto & Redes Sociales</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>¡Contáctanos!</h3>
-                    <p>Estamos aquí para ayudarte. Puedes contactarnos a través de nuestros canales de comunicación.</p>
-                    <div class="contact-links">
-                        <a href="https://wa.me/573011044050" target="_blank" class="contact-link">
-                            <strong>📱 WhatsApp:</strong> +57 301 104 4050
-                        </a>
-                        <a href="https://www.facebook.com/share/1Gnu3UA2o8/" target="_blank" class="contact-link">
-                            <strong>👍 Facebook:</strong> Valerie Boutique
-                        </a>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <h3>Envíanos un mensaje</h3>
-                    <input type="text" placeholder="Tu nombre" required>
-                    <input type="email" placeholder="Tu email" required>
-                    <textarea placeholder="Tu mensaje" rows="5" required></textarea>
-                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-                </form>
-            </div>
+        <div class="product-body">
+          <p class="product-category">Conjunto pijama</p>
+          <h3 class="product-name">Conjunto Morado Bunny</h3>
+          <p class="product-desc">Top lila sólido de tiras con moño amarillo + pantalón lila estampado de conejitos de colores con texto "Bunny". Ligero y fresco.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Morado%20Bunny%20🐰" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Sobre Nosotros</h4>
-                    <p>Valerie Boutique ofrece las mejores pijamas y conjuntos para tu comodidad.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#productos">Productos</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Síguenos</h4>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/share/1Gnu3UA2o8/" target="_blank">Facebook</a>
-                        <a href="https://wa.me/573011044050" target="_blank">WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Valerie Boutique. Todos los derechos reservados.</p>
-            </div>
+      <div class="product-card fade-up" data-cat="conjunto">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_20_PM.jpeg" alt="Conjunto Negro Cat Puppy" loading="lazy">
         </div>
-    </footer>
+        <div class="product-body">
+          <p class="product-category">Conjunto pijama</p>
+          <h3 class="product-name">Conjunto Negro Cat & Puppy</h3>
+          <p class="product-desc">Top negro de tiras con moño verde lima + pantalón verde brillante estampado de gatos atigrados tiernos. Estampado exclusivo "Cat & Puppy".</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Negro%20Cat%20Puppy%20🐱" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/573011044050" target="_blank" class="whatsapp-float">
-        💬
-    </a>
+      <div class="product-card fade-up" data-cat="conjunto">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_20_PM__1_.jpeg" alt="Conjunto Amarillo Daisy Duck" loading="lazy">
+          <span class="product-badge">Favorito</span>
+        </div>
+        <div class="product-body">
+          <p class="product-category">Conjunto pijama</p>
+          <h3 class="product-name">Conjunto Amarillo Daisy</h3>
+          <p class="product-desc">Top amarillo limón de tiras con moño blanco + pantalón morado estampado con el personaje Daisy Duck rodeada de flores. Colores vibrantes y alegres.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Amarillo%20Daisy%20🌸" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
 
-    <script src="script.js"></script>
+      <div class="product-card fade-up" data-cat="conjunto">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_19_PM.jpeg" alt="Conjunto Rojo Donuts" loading="lazy">
+        </div>
+        <div class="product-body">
+          <p class="product-category">Conjunto pijama</p>
+          <h3 class="product-name">Conjunto Rojo Donuts</h3>
+          <p class="product-desc">Top vino tinto de tiras con detalle azul en escote + pantalón celeste lleno de donuts de colores. Divertido, cómodo y original.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Conjunto%20Rojo%20Donuts%20🍩" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 – Baby Dolls -->
+
+      <div class="product-card fade-up" data-cat="camisón">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_18_PM.jpeg" alt="Pijama Camisón Hello Kitty" loading="lazy">
+          <span class="product-badge">Más vendido</span>
+        </div>
+        <div class="product-body">
+          <p class="product-category">Pijama Camisón</p>
+          <h3 class="product-name">Pijama Camisón Hello Kitty</h3>
+          <p class="product-desc">Camisón corto fucsia intenso todo estampado con Hello Kitty. Escote en V con detalle fruncido, espalda cruzada y tiras ajustables. Tela suave y ligera.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Pijama%20Camisón%20Hello%20Kitty%20🎀" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="camisón">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_17_PM.jpeg" alt="Pijama Camisón Safari Animals" loading="lazy">
+        </div>
+        <div class="product-body">
+          <p class="product-category">Pijama Camisón</p>
+          <h3 class="product-name">Pijama Camisón Safari Animals</h3>
+          <p class="product-desc">Camisón corto amarillo pálido estampado con jirafas, cebras, elefantes rosados y mariposas. Escote en V fruncido, espalda cruzada y tiras ajustables. Súper tierno.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Pijama%20Camisón%20Safari%20Animals%20🦒" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="camisón">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_14_PM.jpeg" alt="Pijama Camisón Pandas" loading="lazy">
+          <span class="product-badge">Nuevo</span>
+        </div>
+        <div class="product-body">
+          <p class="product-category">Pijama Camisón</p>
+          <h3 class="product-name">Pijama Camisón Pandas Enamorados</h3>
+          <p class="product-desc">Camisón corto rosa lavanda estampado con caras de pandas rodeadas de corazones. Escote en V fruncido y tiras rosadas ajustables. Delicado y adorable.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20el%20Pijama%20Camisón%20Pandas%20🐼" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 – Camisetas Colombia -->
+
+      <div class="product-card fade-up" data-cat="camiseta">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_13_PM.jpeg" alt="Camiseta Selección Colombia - Flatlay" loading="lazy">
+          <span class="product-badge">Pack disponible</span>
+        </div>
+        <div class="product-body">
+          <p class="product-category">Camiseta deportiva</p>
+          <h3 class="product-name">Camiseta Selección Colombia</h3>
+          <p class="product-desc">Camiseta oficial de la Selección Colombia. Tejido técnico amarillo, escudo bordado, cuello en V con borde azul y franjas rojas. Disponible en tallas para dama y caballero.</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20la%20Camiseta%20Selección%20Colombia%20⚽🇨🇴" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card fade-up" data-cat="camiseta">
+        <div class="product-img-wrap">
+          <img src="WhatsApp_Image_2026-06-12_at_3_06_12_PM.jpeg" alt="Camiseta Colombia - Look Streetwear" loading="lazy">
+          <span class="product-badge">Look dama & caballero</span>
+        </div>
+        <div class="product-body">
+          <p class="product-category">Camiseta deportiva</p>
+          <h3 class="product-name">Colombia – Edición Streetwear</h3>
+          <p class="product-desc">La misma camiseta oficial en un look urbano. Apta para dama (corte slim fit) y caballero (corte regular). Perfecta para vivir los partidos con estilo. ¡Vamos Colombia!</p>
+          <div class="product-footer">
+            <a href="https://wa.me/573011044050?text=Hola%20Valerie%20Boutique!%20Me%20interesa%20la%20Camiseta%20Colombia%20Streetwear%20🇨🇴" target="_blank" class="product-btn">Consultar precio</a>
+            <a href="https://wa.me/573011044050" target="_blank" class="product-wa">💬</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="nosotros" class="section about">
+  <div class="about-inner">
+    <div class="fade-up">
+      <span class="section-label">Quiénes somos</span>
+      <h2 class="section-title">Comodidad que <em>se siente</em></h2>
+      <p class="section-desc">En Valerie Boutique creemos que sentirte bien empieza desde lo que usas para descansar. Cada prenda es elegida con cuidado, porque tus mejores momentos merecen lo mejor.</p>
+    </div>
+    <div class="about-features fade-up">
+      <div class="feature-row">
+        <div class="feature-icon">🌙</div>
+        <div class="feature-text">
+          <h4>Diseñado para el descanso</h4>
+          <p>Tejidos suaves que acompañan cada movimiento mientras duermes o relajas en casa.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-text">
+          <h4>Estampados únicos</h4>
+          <p>Desde pandas y koalas hasta donuts y camisetas de la Selección — siempre hay algo para tu personalidad.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📦</div>
+        <div class="feature-text">
+          <h4>Envíos a todo Colombia</h4>
+          <p>Pedidos por WhatsApp con despacho rápido. Tu comodidad llega hasta tu puerta.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">💬</div>
+        <div class="feature-text">
+          <h4>Atención personalizada</h4>
+          <p>Escríbenos y te asesoramos en talla, disponibilidad y colores. Somos un equipo cercano y real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section testimonials">
+  <div class="testimonials-wrap">
+    <div class="centered fade-up">
+      <span class="section-label">Lo que dicen nuestras clientas</span>
+      <h2 class="section-title">Amor desde el <em>primer uso</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El conjunto de los aguacates es una delicia. La tela es súper suave y el color es exactamente como en las fotos. Ya pedí el de pandas también."</p>
+        <span class="testi-author">Valentina M. – Bogotá</span>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Compré la camiseta de Colombia para los partidos y quedé encantada. Llegó súper rápido y el tejido es de muy buena calidad."</p>
+        <span class="testi-author">Daniela R. – Medellín</span>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El baby doll Hello Kitty es hermoso. Me lo puse y no me lo quiero quitar jaja. La atención de Valerie fue increíble, muy puntual y amable."</p>
+        <span class="testi-author">Sofía L. – Cali</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contacto" class="section contact">
+  <div class="contact-inner">
+    <div class="fade-up">
+      <span class="section-label">Contacto</span>
+      <h2 class="section-title">¿Lista para <em>tu pijama</em>?</h2>
+      <p class="section-desc">Escríbenos por WhatsApp o redes sociales. Respondemos rápido y te asesoramos con gusto.</p>
+      <div class="contact-channels">
+        <a href="https://wa.me/573011044050" target="_blank" class="contact-channel">
+          <div class="channel-icon green">💬</div>
+          <div>
+            <div class="channel-label">WhatsApp</div>
+            <div class="channel-value">+57 301 104 4050</div>
+          </div>
+        </a>
+        <a href="https://www.facebook.com/share/1Gnu3UA2o8/" target="_blank" class="contact-channel">
+          <div class="channel-icon blue">👍</div>
+          <div>
+            <div class="channel-label">Facebook</div>
+            <div class="channel-value">Valerie Boutique</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="fade-up">
+      <h3 style="font-family: var(--ff-serif); font-size: 22px; font-weight: 300; margin-bottom: 24px; color: var(--ink);">Envíanos un mensaje</h3>
+      <div class="contact-form" id="contactForm">
+        <div>
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" placeholder="Nombre completo">
+        </div>
+        <div>
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" placeholder="tucorreo@email.com">
+        </div>
+        <div>
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" placeholder="¿Cuál producto te interesa? ¿Tienes alguna duda sobre tallas o envíos?"></textarea>
+        </div>
+        <button type="button" onclick="sendForm()" class="btn-primary" style="border: none; cursor: pointer; font-family: var(--ff-sans);">Enviar mensaje</button>
+        <div id="formSuccess" style="display:none; color: var(--rose); font-size: 13px; font-weight:500;">
+          ✓ Redirigiendo a WhatsApp con tu mensaje…
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="footer-logo">Valerie Boutique</p>
+      <p>Pijamas & comodidad para tus mejores momentos. Diseños únicos, telas suaves y atención con amor desde Medellín, Colombia.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navegación</h5>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contáctanos</h5>
+      <ul>
+        <li><a href="https://wa.me/573011044050" target="_blank">WhatsApp: +57 301 104 4050</a></li>
+        <li><a href="https://www.facebook.com/share/1Gnu3UA2o8/" target="_blank">Facebook: Valerie Boutique</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Valerie Boutique. Todos los derechos reservados.</span>
+    <span>Hecho con 💗 en Medellín</span>
+  </div>
+</footer>
+
+<!-- WA Float -->
+<a href="https://wa.me/573011044050" target="_blank" class="wa-float" aria-label="Contáctanos por WhatsApp">💬</a>
+
+<script>
+  /* Hamburger menu */
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileNav');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
+
+  /* Smooth close nav on desktop link click */
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {}));
+
+  /* Filter tabs */
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      document.querySelectorAll('.product-card').forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  /* Scroll reveal */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* Contact form → WhatsApp redirect */
+  function sendForm() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    if (!nombre || !mensaje) { alert('Por favor completa tu nombre y mensaje.'); return; }
+    const text = encodeURIComponent(
+      'Hola Valerie Boutique! 👋\n' +
+      'Nombre: ' + nombre + '\n' +
+      (email ? 'Email: ' + email + '\n' : '') +
+      'Mensaje: ' + mensaje
+    );
+    document.getElementById('formSuccess').style.display = 'block';
+    setTimeout(() => { window.open('https://wa.me/573011044050?text=' + text, '_blank'); }, 800);
+  }
+</script>
 </body>
 </html>
-
-
