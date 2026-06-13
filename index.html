@@ -36,7 +36,7 @@
       overflow-x: hidden;
     }
 
-    /* ── HEADER Y PROMO BANNER ──────────────────── */
+    /* ── NAVBAR & SITE HEADER ───────────────── */
     .site-header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -48,19 +48,19 @@
       background: linear-gradient(135deg, var(--rose-dk) 0%, var(--rose) 100%);
       color: var(--white);
       text-align: center;
-      padding: 12px 20px;
+      padding: 14px 20px;
       font-family: var(--ff-sans);
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       position: relative;
       z-index: 101;
     }
     .promo-text {
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 16px;
+      font-weight: 500;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       display: flex;
@@ -69,10 +69,10 @@
     }
     .promo-text strong {
       font-weight: 700;
-      font-size: 16px;
+      font-size: 18px;
       background: var(--gold-lt);
       color: var(--rose-dk);
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
@@ -80,23 +80,22 @@
       background: var(--ink);
       color: var(--white);
       text-decoration: none;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      padding: 6px 16px;
+      padding: 8px 20px;
       border-radius: 50px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       transition: background 0.3s ease, transform 0.2s ease;
-      cursor: pointer;
     }
     .promo-btn:hover {
       background: var(--white);
       color: var(--ink);
       transform: translateY(-2px);
     }
-
-    /* ── NAVBAR ─────────────────────────────── */
     .nav {
+      position: relative;
+      z-index: 100;
       background: rgba(250,247,244,0.92);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -112,6 +111,9 @@
       font-size: 22px; font-weight: 600; letter-spacing: 0.04em;
       color: var(--rose-dk); text-decoration: none;
       display: flex; align-items: center; gap: 9px;
+    }
+    .nav-logo img {
+      width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
     }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
@@ -132,7 +134,7 @@
     .hero {
       min-height: 100vh;
       display: grid; place-items: center;
-      padding: 160px 28px 60px;
+      padding: 200px 28px 60px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -142,6 +144,10 @@
       background-image: repeating-linear-gradient(45deg, var(--rose) 0px, var(--rose) 1px, transparent 1px, transparent 30px);
     }
     .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+    .hero-inner img {
+      width: 220px; height: 220px; border-radius: 50%; object-fit: cover;
+      margin-bottom: 24px; box-shadow: 0 10px 30px rgba(201,100,122,0.2);
+    }
     .hero-eyebrow {
       display: inline-block;
       font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -162,24 +168,6 @@
       font-size: 17px; color: var(--muted);
       font-weight: 300; margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto;
     }
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--rose); color: var(--white);
-      padding: 13px 32px; border-radius: 100px;
-      font-size: 14px; font-weight: 500; text-decoration: none;
-      letter-spacing: 0.03em; transition: background .2s, transform .15s;
-      display: inline-block; cursor: pointer; border: none;
-    }
-    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent; color: var(--rose);
-      border: 1.5px solid var(--rose);
-      padding: 12px 28px; border-radius: 100px;
-      font-size: 14px; font-weight: 500; text-decoration: none;
-      letter-spacing: 0.03em; transition: all .2s;
-      display: inline-block;
-    }
-    .btn-outline:hover { background: var(--rose); color: var(--white); }
 
     /* ── TRUST STRIP ────────────────────────── */
     .trust {
@@ -197,131 +185,52 @@
       display: flex; align-items: center; gap: 8px;
       font-size: 13px; color: var(--muted); white-space: nowrap;
     }
-    .trust-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--rose); flex-shrink: 0;
-    }
+    .trust-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
 
-    /* ── SECTION COMMON ─────────────────────── */
+    /* ── PRODUCTS GRID ──────────────────────── */
     .section { padding: 90px 28px; }
-    .section-label {
-      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--rose); font-weight: 500; display: block; margin-bottom: 14px;
-    }
-    .section-title {
-      font-family: var(--ff-serif);
-      font-size: clamp(32px, 5vw, 50px);
-      font-weight: 300; line-height: 1.1;
-      color: var(--ink); margin-bottom: 16px;
-    }
+    .section-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); font-weight: 500; display: block; margin-bottom: 14px; }
+    .section-title { font-family: var(--ff-serif); font-size: clamp(32px, 5vw, 50px); font-weight: 300; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
     .section-title em { font-style: italic; color: var(--rose); }
-    .section-desc {
-      font-size: 15px; color: var(--muted);
-      max-width: 480px; margin-bottom: 52px; font-weight: 300;
-    }
-    .centered { text-align: center; }
-    .centered .section-desc { margin-left: auto; margin-right: auto; }
-
-    /* ── PRODUCTS ───────────────────────────── */
+    .section-desc { font-size: 15px; color: var(--muted); max-width: 480px; margin-bottom: 52px; font-weight: 300; }
+    .centered { text-align: center; margin-left: auto; margin-right: auto; }
     .products { background: var(--white); }
     .products-wrap { max-width: 1100px; margin: 0 auto; }
-
-    .filter-tabs {
-      display: flex; gap: 10px; flex-wrap: wrap;
-      margin-bottom: 44px; justify-content: center;
-    }
-    .filter-tab {
-      padding: 8px 20px; border-radius: 100px;
-      border: 1px solid var(--border);
-      background: transparent; color: var(--muted);
-      font-size: 13px; font-family: var(--ff-sans);
-      cursor: pointer; transition: all .2s;
-    }
-    .filter-tab:hover, .filter-tab.active {
-      background: var(--rose); color: var(--white); border-color: var(--rose);
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 28px;
-    }
-    .product-card {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radiuslg);
-      overflow: hidden;
-      transition: transform .25s, box-shadow .25s;
-      display: flex; flex-direction: column;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 40px rgba(201,100,122,0.12);
-    }
-    .product-img-wrap {
-      position: relative; overflow: hidden;
-      aspect-ratio: 4/5;
-      background: var(--rose-lt);
-    }
-    .product-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .product-card:hover .product-img-wrap img { transform: scale(1.04); }
-    .product-badge {
-      position: absolute; top: 14px; left: 14px;
-      background: var(--white); color: var(--rose);
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-      padding: 4px 12px; border-radius: 100px;
-      border: 1px solid rgba(201,100,122,0.25);
-    }
-    .product-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
-    .product-category {
-      font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
-      color: var(--rose); font-weight: 500; margin-bottom: 6px;
-    }
-    .product-name {
-      font-family: var(--ff-serif);
-      font-size: 21px; font-weight: 400; color: var(--ink);
-      margin-bottom: 6px; line-height: 1.2;
-    }
-    .product-desc {
-      font-size: 13px; color: var(--muted);
-      font-weight: 300; flex: 1; margin-bottom: 18px; line-height: 1.6;
-    }
-    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .product-btn {
-      flex: 1; text-align: center;
-      background: var(--rose); color: var(--white);
-      padding: 11px 18px; border-radius: 100px;
-      font-size: 13px; font-weight: 500; text-decoration: none;
-      letter-spacing: 0.04em; transition: background .2s;
-      white-space: nowrap; cursor: pointer; border: none;
-    }
-    .product-btn:hover { background: var(--rose-dk); }
     
-    /* ── RESPONSIVE ─────────────────────────── */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .hero h1 { font-size: 52px; }
-      .section { padding: 60px 20px; }
-      .promo-banner { flex-direction: column; padding: 10px 15px; gap: 8px; }
-      .promo-text { font-size: 12px; flex-wrap: wrap; justify-content: center; }
-      .promo-btn { display: none; }
-    }
+    .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px; justify-content: center; }
+    .filter-tab { padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 13px; font-family: var(--ff-sans); cursor: pointer; transition: all .2s; }
+    .filter-tab:hover, .filter-tab.active { background: var(--rose); color: var(--white); border-color: var(--rose); }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+    .product-card { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radiuslg); overflow: hidden; transition: transform .25s, box-shadow .25s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(201,100,122,0.12); }
+    .product-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--rose-lt); }
+    .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .product-card:hover .product-img-wrap img { transform: scale(1.04); }
+    .product-badge { position: absolute; top: 14px; left: 14px; background: var(--white); color: var(--rose); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 100px; border: 1px solid rgba(201,100,122,0.25); }
+    .product-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+    .product-category { font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--rose); font-weight: 500; margin-bottom: 6px; }
+    .product-name { font-family: var(--ff-serif); font-size: 21px; font-weight: 400; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
+    .product-desc { font-size: 13px; color: var(--muted); font-weight: 300; flex: 1; margin-bottom: 18px; line-height: 1.6; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .product-btn { flex: 1; text-align: center; background: var(--rose); color: var(--white); padding: 11px 18px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 0.04em; transition: background .2s; white-space: nowrap; }
+    .product-btn:hover { background: var(--rose-dk); }
+    .product-wa { width: 40px; height: 40px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0; transition: transform .2s; font-size: 18px; }
+    .product-wa:hover { transform: scale(1.1); }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER & BANNER ── -->
+<!-- ── NAVBAR ── -->
 <header class="site-header">
   <div class="promo-banner">
     <span class="promo-text">✨ ¡APROVECHA! PIJAMAS DESDE <strong>$11.700 PESOS</strong> ✨</span>
-    <a href="#coleccion" class="promo-btn" onclick="activarFiltroShort()">Ver Colección</a>
+    <a href="#coleccion" class="promo-btn" onclick="setTimeout(()=>document.querySelector('[data-filter=\'short\']').click(), 100)">Ver Colección</a>
   </div>
   <nav class="nav">
     <div class="nav-inner">
       <a href="#inicio" class="nav-logo">
-        <img src="logo.png" alt="VB" style="width:36px; height:36px; border-radius:50%; object-fit:cover;">
+        <img src="logo.png" alt="VB">
         Valerie Boutique
       </a>
       <ul class="nav-links">
@@ -337,12 +246,12 @@
 <section id="inicio" class="hero">
   <div class="hero-bg-pattern"></div>
   <div class="hero-inner">
-    <img src="portada.jpg" alt="Valerie Boutique" style="width:220px; height:220px; border-radius:50%; object-fit:cover; margin-bottom:28px; box-shadow: 0 8px 32px rgba(201,100,122,0.22);">
+    <img src="portada.jpg" alt="Valerie Boutique">
     <span class="hero-eyebrow">✦ Cisneros, Colombia ✦</span>
     <h1>Valerie<br><em>Boutique</em></h1>
-    <p class="hero-sub">Comodidad y estilo para tus mejores momentos. <strong>¡Nuestras pijamas desde $11.700 pesos!</strong></p>
+    <p class="hero-sub">Comodidad y estilo para tus mejores momentos. Nuestras colecciones premium están diseñadas para resaltar tu belleza.</p>
     <div class="hero-btns">
-      <a href="#coleccion" class="btn-primary" onclick="activarFiltroShort()">Ver colección de Short</a>
+      <a href="#coleccion" class="btn-primary" onclick="setTimeout(()=>document.querySelector('[data-filter=\'short\']').click(), 100)">Ver colección de Short</a>
       <a href="https://wa.me/573011044050" target="_blank" class="btn-outline">Consultar por WhatsApp</a>
     </div>
   </div>
@@ -357,18 +266,17 @@
     <div class="trust-item"><div class="trust-dot"></div> Atención personalizada por WhatsApp</div>
   </div>
 </div>
-
 <!-- ── PRODUCTS ── -->
 <section id="coleccion" class="section products">
   <div class="products-wrap">
     <div class="centered">
       <span class="section-label">Nuestra colección</span>
       <h2 class="section-title">Pijamas & <em>Conjuntos</em></h2>
-      <p class="section-desc">Cada pieza está seleccionada con amor — tejidos suaves, estampados únicos y cortes que abrazan cada cuerpo.</p>
+      <p class="section-desc">Cada pieza está seleccionada con amor — tejidos suaves, estampados únicos y cortes que abrazan cada cuerpo de forma perfecta.</p>
     </div>
 
-    <!-- Pestañas de Filtro -->
-    <div class="filter-tabs">
+    <!-- Pestañas de Filtro Inteligentes -->
+    <div class="filter-tabs fade-up">
       <button class="filter-tab active" data-filter="all">Todo</button>
       <button class="filter-tab" data-filter="capri">Pijamas Capri</button>
       <button class="filter-tab" data-filter="short" id="btn-filtro-short">Pijamas Short</button>
@@ -377,97 +285,97 @@
     <div class="products-grid">
 
         <!-- 1. CAPRI HELLO KITTY -->
-        <article class="product-card" data-cat="capri">
+        <article class="product-card fade-up" data-cat="capri">
           <div class="product-img-wrap">
-            <span class="product-badge">DESDE $11.700</span>
-            <img src="Imagen1.png" alt="Pijama Capri Hello Kitty" loading="lazy">
+            <span class="product-badge">NUEVO</span>
+            <img src="Imagen1_2.png" alt="Pijama Capri Hello Kitty" loading="lazy">
           </div>
           <div class="product-body">
             <span class="product-category">Capri</span>
-            <h3 class="product-name">Capri Hello Kitty</h3>
-            <p class="product-desc">Blusa blanca de tirantes con delicados detalles en rosa y pantalón capri con un encantador estampado de Hello Kitty. Máxima frescura y ternura.</p>
+            <h3 class="product-name">Capri Hello Kitty Luxury</h3>
+            <p class="product-desc">Sofisticada blusa blanca de tirantes con delicados ribetes rosa y un elegante lazo negro en contraste. Pantalón capri en tono rosa pastel con un tierno estampado continuo de Hello Kitty.</p>
             <div class="product-footer">
-              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Hello%20Kitty" class="product-btn" target="_blank">Lo quiero</a>
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Hello%20Kitty" class="product-btn" target="_blank">Consultar Disponibilidad</a>
             </div>
           </div>
         </article>
 
         <!-- 2. CAPRI OSITOS AZUL -->
-        <article class="product-card" data-cat="capri">
+        <article class="product-card fade-up" data-cat="capri">
           <div class="product-img-wrap">
-            <span class="product-badge">DESDE $11.700</span>
-            <img src="Imagen2.png" alt="Pijama Capri Ositos y Donas" loading="lazy">
+            <span class="product-badge">NUEVO</span>
+            <img src="Imagen2_2.png" alt="Pijama Capri Ositos y Donas" loading="lazy">
           </div>
           <div class="product-body">
             <span class="product-category">Capri</span>
-            <h3 class="product-name">Capri Ositos & Donas</h3>
-            <p class="product-desc">Blusa blanca con ribetes azules en contraste, combinada con un pantalón capri azul vibrante estampado de tiernos ositos y donas.</p>
+            <h3 class="product-name">Capri Teddy & Donuts</h3>
+            <p class="product-desc">Frescura inigualable en una blusa blanca clásica con vivos azules y lazo lila decorativo. Se complementa con un pantalón capri azul rey adornado con un divertido patrón de ositos y donas.</p>
             <div class="product-footer">
-              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Ositos%20y%20Donas" class="product-btn" target="_blank">Lo quiero</a>
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Ositos%20y%20Donas" class="product-btn" target="_blank">Consultar Disponibilidad</a>
             </div>
           </div>
         </article>
 
         <!-- 3. CAPRI OSITOS DURAZNO -->
-        <article class="product-card" data-cat="capri">
+        <article class="product-card fade-up" data-cat="capri">
           <div class="product-img-wrap">
-            <span class="product-badge">DESDE $11.700</span>
-            <img src="Imagen3.png" alt="Pijama Capri Ositos Románticos" loading="lazy">
+            <span class="product-badge">NUEVO</span>
+            <img src="Imagen3_2.png" alt="Pijama Capri Ositos Románticos" loading="lazy">
           </div>
           <div class="product-body">
             <span class="product-category">Capri</span>
-            <h3 class="product-name">Capri Ositos Románticos</h3>
-            <p class="product-desc">Elegante blusa negra con detalle de moño fucsia, acompañada de un pantalón capri tono durazno lleno de adorables caritas de oso.</p>
+            <h3 class="product-name">Capri Sweet Bear Noir</h3>
+            <p class="product-desc">Un diseño premium que combina el misterio de una blusa negra con tirantes fucsia y un pantalón capri en un tierno tono durazno, ilustrado con sutiles caritas de osos de colección.</p>
             <div class="product-footer">
-              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Ositos%20Romanticos" class="product-btn" target="_blank">Lo quiero</a>
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Ositos%20Romanticos" class="product-btn" target="_blank">Consultar Disponibilidad</a>
             </div>
           </div>
         </article>
 
         <!-- 4. SHORT ARISTOGATOS -->
-        <article class="product-card" data-cat="short">
+        <article class="product-card fade-up" data-cat="short">
           <div class="product-img-wrap">
-            <span class="product-badge">DESDE $11.700</span>
-            <img src="Imagen4.jpg" alt="Pijama Short Marie Aristogatos" loading="lazy">
+            <span class="product-badge">NUEVO</span>
+            <img src="Imagen4_2.jpg" alt="Pijama Short Marie Aristogatos" loading="lazy">
           </div>
           <div class="product-body">
             <span class="product-category">Short</span>
-            <h3 class="product-name">Short Marie (Aristogatos)</h3>
-            <p class="product-desc">Conjunto súper coqueto con blusa roja de tiras y short durazno con estampado de la gatita Marie y corazones. Incluye detalle sorpresa.</p>
+            <h3 class="product-name">Set Lounge Marie (Aristogatos)</h3>
+            <p class="product-desc">Alta coquetería para tus noches. Presenta una blusa roja satinada de tiras ajustables y un short durazno con estampado de la gatita Marie. Incluye un set íntimo coordinado a juego.</p>
             <div class="product-footer">
-              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Marie" class="product-btn" target="_blank">Lo quiero</a>
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20el%20Set%20Short%20Marie" class="product-btn" target="_blank">Consultar Disponibilidad</a>
             </div>
           </div>
         </article>
 
         <!-- 5. SHORT MARIPOSAS -->
-        <article class="product-card" data-cat="short">
+        <article class="product-card fade-up" data-cat="short">
           <div class="product-img-wrap">
-            <span class="product-badge">DESDE $11.700</span>
-            <img src="Imagen5.png" alt="Pijama Short Mariposas" loading="lazy">
+            <span class="product-badge">NUEVO</span>
+            <img src="Imagen5_2.png" alt="Pijama Short Mariposas" loading="lazy">
           </div>
           <div class="product-body">
             <span class="product-category">Short</span>
             <h3 class="product-name">Short Mariposas Mágicas</h3>
-            <p class="product-desc">Conjunto en tonos rosados, compuesto por blusa de tiras cruzadas y un fresco short con un hermoso estampado de mariposas moradas.</p>
+            <p class="product-desc">Conjunto veraniego confeccionado en un suave rosa pastel. Blusa de tirantes dobles cruzados en la espalda y un short ligero con estampados florales y etéreas mariposas moradas.</p>
             <div class="product-footer">
-              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Mariposas" class="product-btn" target="_blank">Lo quiero</a>
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Mariposas" class="product-btn" target="_blank">Consultar Disponibilidad</a>
             </div>
           </div>
         </article>
 
         <!-- 6. SHORT HELADOS -->
-        <article class="product-card" data-cat="short">
+        <article class="product-card fade-up" data-cat="short">
           <div class="product-img-wrap">
-            <span class="product-badge">DESDE $11.700</span>
-            <img src="Imagen6.png" alt="Pijama Short Helados" loading="lazy">
+            <span class="product-badge">NUEVO</span>
+            <img src="Imagen6_2.png" alt="Pijama Short Helados" loading="lazy">
           </div>
           <div class="product-body">
             <span class="product-category">Short</span>
-            <h3 class="product-name">Short Sweet Ice Cream</h3>
-            <p class="product-desc">Divertida pijama en tonos vibrantes. Blusa rosada pastel y short fucsia con un dulce y llamativo estampado de conos de helado.</p>
+            <h3 class="product-name">Short Gelato & Dreams</h3>
+            <p class="product-desc">Diversión y confort en una sola prenda. Combina una blusa lisa en rosa pálido con un short fucsia encendido, decorado con coloridos e irresistibles conos de helado.</p>
             <div class="product-footer">
-              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Helados" class="product-btn" target="_blank">Lo quiero</a>
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Helados" class="product-btn" target="_blank">Consultar Disponibilidad</a>
             </div>
           </div>
         </article>
@@ -476,30 +384,54 @@
   </div>
 </section>
 
-<!-- ── SCRIPT PARA LOS FILTROS Y BOTONES ── -->
-<script>
-  // Función para simular el click en la pestaña de "Shorts" desde el anuncio
-  function activarFiltroShort() {
-    setTimeout(() => {
-      const btnShort = document.getElementById('btn-filtro-short');
-      if (btnShort) btnShort.click();
-    }, 100); 
-  }
+<!-- ── FOOTER PREMIUM ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h5 class="footer-logo">Valerie Boutique</h5>
+      <p>Lujo, suavidad y descanso diseñado exclusivamente para la mujer moderna. Confeccionamos momentos inolvidables en casa.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navegación</h5>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Atención</h5>
+      <ul>
+        <li><a href="https://wa.me/573011044050" target="_blank">WhatsApp Directo</a></li>
+        <li>Cisneros, Colombia</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Valerie Boutique. Todos los derechos reservados. Diseñado bajo estándares internacionales.</p>
+  </div>
+</footer>
 
-  // Sistema de pestañas de filtro para la tienda
+<!-- ── BOTÓN FLOTANTE WHATSAPP PREMIUM ── -->
+<a href="https://wa.me/573011044050" class="wa-float" target="_blank" aria-label="Escríbenos por WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.487-1.761-1.663-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ── CONTROLADORES DE INTERACCIÓN DE MARCA ── -->
+<script>
+  // Lógica de filtrado de productos mediante pestañas
   document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.filter-tab');
     const cards = document.querySelectorAll('.product-card');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        // Quitar la clase 'active' de todos los botones
+        // Remover estado activo de los botones hermanos
         tabs.forEach(t => t.classList.remove('active'));
-        // Agregarla al botón presionado
         tab.classList.add('active');
         
         const filterValue = tab.getAttribute('data-filter');
         
+        // Esconder o mostrar tarjetas según categoría asignada
         cards.forEach(card => {
           if (filterValue === 'all' || card.getAttribute('data-cat') === filterValue) {
             card.style.display = 'flex';
@@ -509,7 +441,27 @@
         });
       });
     });
+
+    // Controlador del observador de intersección para animaciones fluidas al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { 
+        if (e.isIntersecting) { 
+          e.target.classList.add('visible'); 
+          observer.unobserve(e.target); 
+        }
+      });
+    }, { threshold: 0.15 });
+    
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   });
+
+  // Disparador del filtro "Short" cuando el cliente interactúa con los CTAs superiores
+  function activarFiltroShort() {
+    setTimeout(() => {
+      const btnShort = document.getElementById('btn-filtro-short');
+      if (btnShort) btnShort.click();
+    }, 150); 
+  }
 </script>
 
 </body>
