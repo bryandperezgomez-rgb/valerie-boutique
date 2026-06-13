@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Valerie Boutique – Pijamas femeninas, conjuntos y camisetas. Comodidad y estilo para tus mejores momentos. Cisneros, Colombia.">
-  <title>Valerie Boutique – Lujo & Comodidad</title>
+  <title>Valerie Boutique – Pijamas & Comodidad</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
   <style>
-    /* VARIABLES DE MARCA PREMIUM */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --rose:     #C9647A;
       --rose-lt:  #F7EEF1;
@@ -19,414 +19,498 @@
       --ink:      #1E1A1C;
       --muted:    #7A6D72;
       --border:   rgba(201,100,122,0.18);
-      --white:    #FFFFFF;
+      --white:    #ffffff;
+      --radius:   14px;
+      --radiuslg: 22px;
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans:  'DM Sans', system-ui, sans-serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
+      font-family: var(--ff-sans);
+      background: var(--cream);
       color: var(--ink);
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
+    /* ── HEADER Y PROMO BANNER ──────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
     }
-
-    /* ANUNCIO TOP BAR (Llamativo y Profesional) */
     .promo-banner {
-      background-color: var(--ink);
-      color: var(--gold);
+      background: linear-gradient(135deg, var(--rose-dk) 0%, var(--rose) 100%);
+      color: var(--white);
       text-align: center;
       padding: 12px 20px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { color: var(--gold); }
-      50% { color: #fff; text-shadow: 0 0 8px rgba(196, 151, 74, 0.5); }
-      100% { color: var(--gold); }
-    }
-
-    /* HERO SECTION */
-    .hero {
-      height: 80vh;
+      font-family: var(--ff-sans);
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      text-align: center;
-      background: linear-gradient(rgba(250, 247, 244, 0.8), rgba(250, 247, 244, 0.8)), url('https://images.unsplash.com/photo-1616847220268-28956ed28509?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
-      padding: 0 20px;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 101;
     }
-    .hero h1 {
-      font-size: 4rem;
-      color: var(--ink);
-      margin-bottom: 10px;
+    .promo-text {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--muted);
-      margin-bottom: 30px;
-      max-width: 600px;
+    .promo-text strong {
+      font-weight: 700;
+      font-size: 16px;
+      background: var(--gold-lt);
+      color: var(--rose-dk);
+      padding: 3px 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .btn-primary {
-      display: inline-block;
-      padding: 15px 40px;
-      background-color: var(--rose);
+    .promo-btn {
+      background: var(--ink);
       color: var(--white);
       text-decoration: none;
-      font-weight: 500;
-      letter-spacing: 1px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 50px;
       text-transform: uppercase;
-      transition: all 0.3s ease;
+      letter-spacing: 0.08em;
+      transition: background 0.3s ease, transform 0.2s ease;
       cursor: pointer;
-      border: none;
     }
-    .btn-primary:hover {
-      background-color: var(--rose-dk);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(138, 63, 82, 0.2);
-    }
-
-    /* TIENDA Y FILTROS */
-    .shop-section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 40px;
-      color: var(--ink);
-    }
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 50px;
-      flex-wrap: wrap;
-    }
-    .filter-tab {
-      background: transparent;
-      border: 1px solid var(--border);
-      padding: 10px 25px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .filter-tab.active, .filter-tab:hover {
-      background-color: var(--rose);
-      color: var(--white);
-      border-color: var(--rose);
-    }
-
-    /* GRID DE PRODUCTOS */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 40px;
-    }
-    .product-card {
+    .promo-btn:hover {
       background: var(--white);
-      border: 1px solid var(--border);
-      transition: all 0.4s ease;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
+      color: var(--ink);
+      transform: translateY(-2px);
     }
-    .product-card:hover {
-      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-      transform: translateY(-5px);
+
+    /* ── NAVBAR ─────────────────────────────── */
+    .nav {
+      background: rgba(250,247,244,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
-    .product-img-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 130%; /* Aspect ratio elegante */
-      overflow: hidden;
-      background-color: var(--rose-lt);
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 28px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .product-img-wrapper img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 22px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--rose-dk); text-decoration: none;
+      display: flex; align-items: center; gap: 9px;
     }
-    .product-card:hover .product-img-wrapper img {
-      transform: scale(1.05);
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--muted); transition: color .2s;
     }
-    .product-info {
-      padding: 25px 20px;
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: var(--white);
+      padding: 9px 20px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.03em; transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--rose-dk); transform: translateY(-1px); }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 160px 28px 60px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .product-title {
-      font-size: 1.5rem;
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image: repeating-linear-gradient(45deg, var(--rose) 0px, var(--rose) 1px, transparent 1px, transparent 30px);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--rose); font-weight: 500;
+      border: 1px solid rgba(201,100,122,0.35);
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--ff-serif);
+      font-size: clamp(52px, 9vw, 88px);
+      font-weight: 300; line-height: 1.0;
+      color: var(--ink); letter-spacing: -0.01em;
       margin-bottom: 10px;
     }
-    .product-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 15px;
-      line-height: 1.4;
+    .hero h1 em { font-style: italic; color: var(--rose); }
+    .hero-sub {
+      font-size: 17px; color: var(--muted);
+      font-weight: 300; margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto;
     }
-    .product-price {
-      font-size: 1.2rem;
-      color: var(--rose-dk);
-      font-weight: 500;
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--rose); color: var(--white);
+      padding: 13px 32px; border-radius: 100px;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.03em; transition: background .2s, transform .15s;
+      display: inline-block; cursor: pointer; border: none;
     }
+    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--rose);
+      border: 1.5px solid var(--rose);
+      padding: 12px 28px; border-radius: 100px;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.03em; transition: all .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--rose); color: var(--white); }
 
-    /* ANIMACIONES */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* CONTACTO */
-    .contact-section {
-      background-color: var(--rose-lt);
-      padding: 80px 20px;
-      text-align: center;
-    }
-    .contact-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 15px;
-      border: 1px solid var(--border);
+    /* ── TRUST STRIP ────────────────────────── */
+    .trust {
       background: var(--white);
-      font-family: 'DM Sans', sans-serif;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    textarea { resize: vertical; min-height: 120px; }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 18px 28px;
+      display: flex; justify-content: center; align-items: center;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--muted); white-space: nowrap;
+    }
+    .trust-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--rose); flex-shrink: 0;
+    }
+
+    /* ── SECTION COMMON ─────────────────────── */
+    .section { padding: 90px 28px; }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--rose); font-weight: 500; display: block; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 300; line-height: 1.1;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-desc {
+      font-size: 15px; color: var(--muted);
+      max-width: 480px; margin-bottom: 52px; font-weight: 300;
+    }
+    .centered { text-align: center; }
+    .centered .section-desc { margin-left: auto; margin-right: auto; }
+
+    /* ── PRODUCTS ───────────────────────────── */
+    .products { background: var(--white); }
+    .products-wrap { max-width: 1100px; margin: 0 auto; }
+
+    .filter-tabs {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 44px; justify-content: center;
+    }
+    .filter-tab {
+      padding: 8px 20px; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent; color: var(--muted);
+      font-size: 13px; font-family: var(--ff-sans);
+      cursor: pointer; transition: all .2s;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--rose); color: var(--white); border-color: var(--rose);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radiuslg);
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(201,100,122,0.12);
+    }
+    .product-img-wrap {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--rose-lt);
+    }
+    .product-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.04); }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--white); color: var(--rose);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      padding: 4px 12px; border-radius: 100px;
+      border: 1px solid rgba(201,100,122,0.25);
+    }
+    .product-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+    .product-category {
+      font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--rose); font-weight: 500; margin-bottom: 6px;
+    }
+    .product-name {
+      font-family: var(--ff-serif);
+      font-size: 21px; font-weight: 400; color: var(--ink);
+      margin-bottom: 6px; line-height: 1.2;
+    }
+    .product-desc {
+      font-size: 13px; color: var(--muted);
+      font-weight: 300; flex: 1; margin-bottom: 18px; line-height: 1.6;
+    }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .product-btn {
+      flex: 1; text-align: center;
+      background: var(--rose); color: var(--white);
+      padding: 11px 18px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      letter-spacing: 0.04em; transition: background .2s;
+      white-space: nowrap; cursor: pointer; border: none;
+    }
+    .product-btn:hover { background: var(--rose-dk); }
+    
+    /* ── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hero h1 { font-size: 52px; }
+      .section { padding: 60px 20px; }
+      .promo-banner { flex-direction: column; padding: 10px 15px; gap: 8px; }
+      .promo-text { font-size: 12px; flex-wrap: wrap; justify-content: center; }
+      .promo-btn { display: none; }
+    }
   </style>
 </head>
 <body>
 
+<!-- ── HEADER & BANNER ── -->
+<header class="site-header">
   <div class="promo-banner">
-    ✨ ¡GRAN PROMOCIÓN! Pijamas desde $11.700 COP - Comodidad que enamora ✨
+    <span class="promo-text">✨ ¡APROVECHA! PIJAMAS DESDE <strong>$11.700 PESOS</strong> ✨</span>
+    <a href="#coleccion" class="promo-btn" onclick="activarFiltroShort()">Ver Colección</a>
   </div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-logo">
+        <img src="logo.png" alt="VB" style="width:36px; height:36px; border-radius:50%; object-fit:cover;">
+        Valerie Boutique
+      </a>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+      </ul>
+      <a href="https://wa.me/573011044050" target="_blank" class="nav-cta">Pedir por WhatsApp</a>
+    </div>
+  </nav>
+</header>
 
-  <section class="hero fade-up">
-    <h1>Valerie Boutique</h1>
-    <p>Descubre el equilibrio perfecto entre elegancia y descanso. Colecciones diseñadas para resaltar tu belleza en tus momentos de mayor relajación.</p>
-    <a href="#shop" onclick="activarFiltroShort()" class="btn-primary">Ver Colección de Shorts</a>
-  </section>
+<!-- ── HERO ── -->
+<section id="inicio" class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <img src="portada.jpg" alt="Valerie Boutique" style="width:220px; height:220px; border-radius:50%; object-fit:cover; margin-bottom:28px; box-shadow: 0 8px 32px rgba(201,100,122,0.22);">
+    <span class="hero-eyebrow">✦ Cisneros, Colombia ✦</span>
+    <h1>Valerie<br><em>Boutique</em></h1>
+    <p class="hero-sub">Comodidad y estilo para tus mejores momentos. <strong>¡Nuestras pijamas desde $11.700 pesos!</strong></p>
+    <div class="hero-btns">
+      <a href="#coleccion" class="btn-primary" onclick="activarFiltroShort()">Ver colección de Short</a>
+      <a href="https://wa.me/573011044050" target="_blank" class="btn-outline">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</section>
 
-  <section id="shop" class="shop-section">
-    <h2 class="section-title fade-up">Nuestra Colección</h2>
-    
-    <div class="filters fade-up">
-      <button class="filter-tab active" data-filter="all">Todas</button>
+<!-- ── TRUST STRIP ── -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="trust-dot"></div> Envíos a toda Colombia</div>
+    <div class="trust-item"><div class="trust-dot"></div> Tallas S – XL disponibles</div>
+    <div class="trust-item"><div class="trust-dot"></div> Tejido suave premium</div>
+    <div class="trust-item"><div class="trust-dot"></div> Atención personalizada por WhatsApp</div>
+  </div>
+</div>
+
+<!-- ── PRODUCTS ── -->
+<section id="coleccion" class="section products">
+  <div class="products-wrap">
+    <div class="centered">
+      <span class="section-label">Nuestra colección</span>
+      <h2 class="section-title">Pijamas & <em>Conjuntos</em></h2>
+      <p class="section-desc">Cada pieza está seleccionada con amor — tejidos suaves, estampados únicos y cortes que abrazan cada cuerpo.</p>
+    </div>
+
+    <!-- Pestañas de Filtro -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todo</button>
       <button class="filter-tab" data-filter="capri">Pijamas Capri</button>
       <button class="filter-tab" data-filter="short" id="btn-filtro-short">Pijamas Short</button>
-      <button class="filter-tab" data-filter="conjuntos">Conjuntos Clásicos</button>
     </div>
 
-    <div class="product-grid">
-      
-      <article class="product-card fade-up" data-cat="capri">
-        <div class="product-img-wrapper">
-          <img src="Imagen1.png" alt="Pijama Capri Esencial" loading="lazy" onerror="this.src='https://via.placeholder.com/400x520/F7EEF1/C9647A?text=Foto+Pendiente'">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Capri "Esencia"</h3>
-          <p class="product-desc">Conjunto capri con caída fluida. Ideal para noches frescas, combinando suavidad y un ajuste perfecto que estiliza.</p>
-          <span class="product-price">$25.900 COP</span>
-        </div>
-      </article>
+    <div class="products-grid">
 
-      <article class="product-card fade-up" data-cat="capri">
-        <div class="product-img-wrapper">
-          <img src="Imagen2.png" alt="Pijama Capri Elegance" loading="lazy" onerror="this.src='https://via.placeholder.com/400x520/F7EEF1/C9647A?text=Foto+Pendiente'">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Capri "Elegance"</h3>
-          <p class="product-desc">Diseño sofisticado con detalles delicados. Pantalón a media pierna para libertad total de movimiento y descanso profundo.</p>
-          <span class="product-price">$25.900 COP</span>
-        </div>
-      </article>
+        <!-- 1. CAPRI HELLO KITTY -->
+        <article class="product-card" data-cat="capri">
+          <div class="product-img-wrap">
+            <span class="product-badge">DESDE $11.700</span>
+            <img src="Imagen1.png" alt="Pijama Capri Hello Kitty" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-category">Capri</span>
+            <h3 class="product-name">Capri Hello Kitty</h3>
+            <p class="product-desc">Blusa blanca de tirantes con delicados detalles en rosa y pantalón capri con un encantador estampado de Hello Kitty. Máxima frescura y ternura.</p>
+            <div class="product-footer">
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Hello%20Kitty" class="product-btn" target="_blank">Lo quiero</a>
+            </div>
+          </div>
+        </article>
 
-      <article class="product-card fade-up" data-cat="capri">
-        <div class="product-img-wrapper">
-          <img src="Imagen3.png" alt="Pijama Capri Serenidad" loading="lazy" onerror="this.src='https://via.placeholder.com/400x520/F7EEF1/C9647A?text=Foto+Pendiente'">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Capri "Serenidad"</h3>
-          <p class="product-desc">Textura premium que acaricia la piel. Un estilo atemporal pensado para mujeres que aman verse bien en casa.</p>
-          <span class="product-price">$25.900 COP</span>
-        </div>
-      </article>
+        <!-- 2. CAPRI OSITOS AZUL -->
+        <article class="product-card" data-cat="capri">
+          <div class="product-img-wrap">
+            <span class="product-badge">DESDE $11.700</span>
+            <img src="Imagen2.png" alt="Pijama Capri Ositos y Donas" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-category">Capri</span>
+            <h3 class="product-name">Capri Ositos & Donas</h3>
+            <p class="product-desc">Blusa blanca con ribetes azules en contraste, combinada con un pantalón capri azul vibrante estampado de tiernos ositos y donas.</p>
+            <div class="product-footer">
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Ositos%20y%20Donas" class="product-btn" target="_blank">Lo quiero</a>
+            </div>
+          </div>
+        </article>
 
-      <article class="product-card fade-up" data-cat="short">
-        <div class="product-img-wrapper">
-          <img src="Imagen4.jpg" alt="Pijama Short Frescura" loading="lazy" onerror="this.src='https://via.placeholder.com/400x520/F7EEF1/C9647A?text=Foto+Pendiente'">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Short "Frescura"</h3>
-          <p class="product-desc">Ligera, fresca y con un encanto juvenil. Ideal para climas cálidos y noches de absoluto confort. Tu nueva favorita.</p>
-          <span class="product-price">$11.700 COP</span>
-        </div>
-      </article>
+        <!-- 3. CAPRI OSITOS DURAZNO -->
+        <article class="product-card" data-cat="capri">
+          <div class="product-img-wrap">
+            <span class="product-badge">DESDE $11.700</span>
+            <img src="Imagen3.png" alt="Pijama Capri Ositos Románticos" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-category">Capri</span>
+            <h3 class="product-name">Capri Ositos Románticos</h3>
+            <p class="product-desc">Elegante blusa negra con detalle de moño fucsia, acompañada de un pantalón capri tono durazno lleno de adorables caritas de oso.</p>
+            <div class="product-footer">
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Capri%20Ositos%20Romanticos" class="product-btn" target="_blank">Lo quiero</a>
+            </div>
+          </div>
+        </article>
 
-      <article class="product-card fade-up" data-cat="short">
-        <div class="product-img-wrapper">
-          <img src="Imagen5.png" alt="Pijama Short Encanto" loading="lazy" onerror="this.src='https://via.placeholder.com/400x520/F7EEF1/C9647A?text=Foto+Pendiente'">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Short "Encanto"</h3>
-          <p class="product-desc">Conjunto de tirantes sutiles y short cómodo. Diseño romántico que eleva tu rutina nocturna a una experiencia premium.</p>
-          <span class="product-price">$11.700 COP</span>
-        </div>
-      </article>
+        <!-- 4. SHORT ARISTOGATOS -->
+        <article class="product-card" data-cat="short">
+          <div class="product-img-wrap">
+            <span class="product-badge">DESDE $11.700</span>
+            <img src="Imagen4.jpg" alt="Pijama Short Marie Aristogatos" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-category">Short</span>
+            <h3 class="product-name">Short Marie (Aristogatos)</h3>
+            <p class="product-desc">Conjunto súper coqueto con blusa roja de tiras y short durazno con estampado de la gatita Marie y corazones. Incluye detalle sorpresa.</p>
+            <div class="product-footer">
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Marie" class="product-btn" target="_blank">Lo quiero</a>
+            </div>
+          </div>
+        </article>
 
-      <article class="product-card fade-up" data-cat="short">
-        <div class="product-img-wrapper">
-          <img src="Imagen6.png" alt="Pijama Short Brisa" loading="lazy" onerror="this.src='https://via.placeholder.com/400x520/F7EEF1/C9647A?text=Foto+Pendiente'">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Short "Brisa"</h3>
-          <p class="product-desc">Material transpirable de primera calidad. Corte moderno que favorece la figura mientras te brinda descanso garantizado.</p>
-          <span class="product-price">$11.700 COP</span>
-        </div>
-      </article>
+        <!-- 5. SHORT MARIPOSAS -->
+        <article class="product-card" data-cat="short">
+          <div class="product-img-wrap">
+            <span class="product-badge">DESDE $11.700</span>
+            <img src="Imagen5.png" alt="Pijama Short Mariposas" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-category">Short</span>
+            <h3 class="product-name">Short Mariposas Mágicas</h3>
+            <p class="product-desc">Conjunto en tonos rosados, compuesto por blusa de tiras cruzadas y un fresco short con un hermoso estampado de mariposas moradas.</p>
+            <div class="product-footer">
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Mariposas" class="product-btn" target="_blank">Lo quiero</a>
+            </div>
+          </div>
+        </article>
 
-      <article class="product-card fade-up" data-cat="conjuntos">
-        <div class="product-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1588636603038-f860de01880a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Conjunto Clásico">
-        </div>
-        <div class="product-info">
-          <h3 class="product-title">Conjunto Tradicional</h3>
-          <p class="product-desc">El clásico conjunto de dos piezas. Comodidad absoluta para tus días de descanso en casa.</p>
-          <span class="product-price">$32.000 COP</span>
-        </div>
-      </article>
+        <!-- 6. SHORT HELADOS -->
+        <article class="product-card" data-cat="short">
+          <div class="product-img-wrap">
+            <span class="product-badge">DESDE $11.700</span>
+            <img src="Imagen6.png" alt="Pijama Short Helados" loading="lazy">
+          </div>
+          <div class="product-body">
+            <span class="product-category">Short</span>
+            <h3 class="product-name">Short Sweet Ice Cream</h3>
+            <p class="product-desc">Divertida pijama en tonos vibrantes. Blusa rosada pastel y short fucsia con un dulce y llamativo estampado de conos de helado.</p>
+            <div class="product-footer">
+              <a href="https://wa.me/573011044050?text=Hola,%20me%20interesa%20la%20Pijama%20Short%20Helados" class="product-btn" target="_blank">Lo quiero</a>
+            </div>
+          </div>
+        </article>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="contact-section">
-    <div class="contact-container fade-up">
-      <h2 class="section-title">Habla con Asesoría</h2>
-      <p style="margin-bottom: 30px; color: var(--muted);">¿Deseas realizar un pedido o tienes dudas sobre tus tallas? Escríbenos.</p>
-      
-      <div class="form-group">
-        <input type="text" id="nombre" placeholder="Tu Nombre Completo" required>
-      </div>
-      <div class="form-group">
-        <input type="email" id="email" placeholder="Tu Email (Opcional)">
-      </div>
-      <div class="form-group">
-        <textarea id="mensaje" placeholder="¡Hola Valerie Boutique! Me interesa la pijama..." required></textarea>
-      </div>
-      <button onclick="sendForm()" class="btn-primary" style="width: 100%;">Enviar a WhatsApp</button>
-      <p id="formSuccess" style="display: none; margin-top: 15px; color: var(--rose-dk); font-weight: 500;">¡Abriendo WhatsApp!</p>
-    </div>
-  </section>
+<!-- ── SCRIPT PARA LOS FILTROS Y BOTONES ── -->
+<script>
+  // Función para simular el click en la pestaña de "Shorts" desde el anuncio
+  function activarFiltroShort() {
+    setTimeout(() => {
+      const btnShort = document.getElementById('btn-filtro-short');
+      if (btnShort) btnShort.click();
+    }, 100); 
+  }
 
-  <script>
-    /* Lógica del Botón del Hero para ir directo a Shorts */
-    function activarFiltroShort() {
-      setTimeout(() => {
-        const btnShort = document.getElementById('btn-filtro-short');
-        if (btnShort) btnShort.click();
-      }, 150); // Pequeño retraso para que haga el scroll primero
-    }
+  // Sistema de pestañas de filtro para la tienda
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.product-card');
 
-    /* Sistema de Filtros Profesional */
-    document.addEventListener('DOMContentLoaded', () => {
-      const tabs = document.querySelectorAll('.filter-tab');
-      const cards = document.querySelectorAll('.product-card');
-
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          // Quitar clase activa
-          tabs.forEach(t => t.classList.remove('active'));
-          // Añadir al seleccionado
-          tab.classList.add('active');
-          
-          const filter = tab.dataset.filter;
-          
-          cards.forEach(card => {
-            if (filter === 'all' || card.dataset.cat === filter) {
-              card.style.display = 'flex';
-              // Pequeña animación al filtrar
-              card.style.animation = 'none';
-              card.offsetHeight; /* trigger reflow */
-              card.style.animation = null; 
-            } else {
-              card.style.display = 'none';
-            }
-          });
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Quitar la clase 'active' de todos los botones
+        tabs.forEach(t => t.classList.remove('active'));
+        // Agregarla al botón presionado
+        tab.classList.add('active');
+        
+        const filterValue = tab.getAttribute('data-filter');
+        
+        cards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-cat') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
         });
       });
     });
+  });
+</script>
 
-    /* Scroll Reveal (Animaciones al hacer scroll) */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { 
-        if (e.isIntersecting) { 
-          e.target.classList.add('visible'); 
-          observer.unobserve(e.target); 
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    /* Contact form → WhatsApp redirect */
-    function sendForm() {
-      const nombre = document.getElementById('nombre').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const mensaje = document.getElementById('mensaje').value.trim();
-      
-      if (!nombre || !mensaje) { 
-        alert('Por favor completa tu nombre y el mensaje.'); 
-        return; 
-      }
-      
-      const text = encodeURIComponent(
-        'Hola Valerie Boutique! ✨\n' +
-        'Nombre: ' + nombre + '\n' +
-        (email ? 'Email: ' + email + '\n' : '') +
-        'Mensaje: ' + mensaje
-      );
-      
-      document.getElementById('formSuccess').style.display = 'block';
-      
-      // Reemplaza el número por el tuyo, ej: 573001234567
-      const whatsappNumber = "570000000000"; 
-      setTimeout(() => {
-        window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-        document.getElementById('formSuccess').style.display = 'none';
-      }, 800);
-    }
-  </script>
 </body>
 </html>
